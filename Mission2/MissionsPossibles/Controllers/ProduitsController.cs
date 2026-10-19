@@ -24,7 +24,8 @@ namespace Mission.Controllers
         public async Task<IActionResult> Index()
         {
             // COMPLÉTER ICI
-            return View();
+            var missionDbContext= _context.Produits.Include(p => p.Categorie);
+            return View(await missionDbContext.ToListAsync());
         }
 
     }
