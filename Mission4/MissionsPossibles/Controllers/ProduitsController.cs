@@ -49,7 +49,8 @@ namespace Mission.Controllers
         // GET: Produits/Create
         public IActionResult Create()
         {
-         
+
+            ViewData["CategorieId"] = new SelectList(_context.Categories, "Id", "Titre");
             return View();
         }
 
