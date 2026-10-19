@@ -71,9 +71,15 @@ namespace Mission.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-         
+            produit_VM.CategorieList = _context.Categories.OrderBy(c => c.Titre).Select(i => new SelectListItem
+            {
+                Text = i.Titre,
+                Value = i.Id.ToString()
+            });
+
             return View(produit_VM);
         }
+         
 
         // GET: Produits/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -89,11 +95,15 @@ namespace Mission.Controllers
                 Value = i.Id.ToString()
             });
             produit_VM.Produit = await _context.Produits.FirstOrDefaultAsync(u => u.Id == id);
-            if (produit_VM == null)
+            if (produit_VM.Produit == null)
             {
                 return NotFound();
             }
-           
+            produit_VM.CategorieList = _context.Categories.OrderBy(c => c.Titre).Select(i => new SelectListItem
+            {
+                Text = i.Titre,
+                Value = i.Id.ToString()
+            });
             return View(produit_VM);
         }
 

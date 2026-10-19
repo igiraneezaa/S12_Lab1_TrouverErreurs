@@ -37,7 +37,7 @@ namespace Mission.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
 
                     b.HasData(
                         new
@@ -88,7 +88,7 @@ namespace Mission.Migrations
 
                     b.HasIndex("CategorieId");
 
-                    b.ToTable("Produits");
+                    b.ToTable("Produits", (string)null);
 
                     b.HasData(
                         new
